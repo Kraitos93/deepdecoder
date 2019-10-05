@@ -127,6 +127,8 @@ RUN pip3 install \
     click \
     pandas
 
+RUN pip3 install --upgrade pip
+RUN pip3 install --upgrade setuptools
 RUN pip3 install git+https://github.com/berleon/keras.git@losses#egg=Keras
 RUN pip3 install git+https://github.com/BioroboticsLab/diktya.git@c21788bc0fd51f16f920d1ee0f3ae6c88b183ad1#egg=diktya
 RUN pip3 install git+https://github.com/BioroboticsLab/bb_binary.git@c724a61d440878d6a44a43e1523c1cc8fb7c7de9#egg=bb-binary
@@ -138,6 +140,7 @@ RUN git clone https://github.com/berleon/pybeesgrid.git /opt/pybeesgrid && \
 
 RUN ldconfig    # otherwise the cuda libaries are not found
 
+RUN apt-get clean && apt-get update && apt-get install -y locales
 RUN locale-gen en_US.UTF-8  # fix utf-8 encoding
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
